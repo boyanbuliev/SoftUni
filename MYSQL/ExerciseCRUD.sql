@@ -93,3 +93,6 @@ ORDER BY country_name;
 
 
 SELECT name FROM characters ORDER BY name;
+
+SELECT * FROM characters;
+
