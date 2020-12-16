@@ -36,12 +36,12 @@ public class Main {
         } catch (NumberFormatException ex) {
             System.err.printf("Invalid number: %s", salaryStr);
         }
-        Properties properties = new Properties();
-        properties.setProperty("user", username);
-        properties.setProperty("password", password);
+        Properties props = new Properties();
+        props.setProperty("user", username);
+        props.setProperty("password", password);
 
-        try (Connection connection = DriverManager.getConnection(DB_URL, properties);
-             PreparedStatement ps = connection.prepareStatement(SQL_QUERY)) {
+        try (Connection con = DriverManager.getConnection(DB_URL, props);
+             PreparedStatement ps = con.prepareStatement(SQL_QUERY)) {
             System.out.printf("DB connection created successfully: %s%n", DB_URL);
 
             ps.setDouble(1, salary);
