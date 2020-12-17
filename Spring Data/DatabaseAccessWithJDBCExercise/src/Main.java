@@ -15,6 +15,7 @@ public class Main {
 //        homework.changeTownNamesCasing();
 //        homework.removeVillain();
 //        homework.printAllMinionNames();
-        homework.increaseMinionsAge();
+//        homework.increaseMinionsAge();
+//        homework.increaseWithStoredProcedure();
     }
 }

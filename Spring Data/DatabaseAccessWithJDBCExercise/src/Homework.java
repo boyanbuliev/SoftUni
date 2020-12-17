@@ -212,4 +212,19 @@ public class Homework {
         }
 
     }
+
+    public void increaseWithStoredProcedure() throws IOException, SQLException {
+        int minionId = Integer.parseInt(bf.readLine());
+        String query = "CALL usp_get_older(?)";
+        CallableStatement callableStatement = connection.prepareCall(query);
+        callableStatement.setInt(1, minionId);
+        callableStatement.execute();
+        query = "SELECT name, age FROM minions WHERE id=?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1, minionId);
+        ResultSet resultSet = statement.executeQuery();
+        while (resultSet.next()) {
+            System.out.println(resultSet.getString("name") + " " + resultSet.getInt("age"));
+        }
+    }
 }
