@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
+import java.util.stream.Collectors;
 
 public class Homework {
     private static final String CONNECTION_STRING = "jdbc:mysql://localhost:3306/";
@@ -192,17 +193,20 @@ public class Homework {
 
     public void increaseMinionsAge() throws SQLException, IOException {
         int[] ids = Arrays.stream(bf.readLine().split("\\s+")).mapToInt(Integer::parseInt).toArray();
-        String param = "(";
-        for (int i = 0; i < ids.length; i++) {
-            param = param + "?,";
-        }
-        param = param.substring(0, param.length() - 1);
-        param = param + ")";
-        String query = String.format("UPDATE minions SET age = age + 1, name = lower(name) WHERE id IN%s", param);
+//        String param = "(";
+//        for (int i = 0; i < ids.length; i++) {
+//            param = param + "?,";
+//        }
+//        param = param.substring(0, param.length() - 1);
+//        param = param + ")";
+//        String query = String.format("UPDATE minions SET age = age + 1, name = lower(name) WHERE id IN%s", param);
+//        PreparedStatement statement = connection.prepareStatement(query);
+//        for (int i = 0; i < ids.length; i++) {
+//            statement.setInt(i + 1, ids[i]);
+//        }
+        String query = String.format("UPDATE minions SET age = age + 1, name = lower(name) WHERE id IN(%s)",
+                Arrays.stream(ids).mapToObj(String::valueOf).collect(Collectors.joining(", ")));
         PreparedStatement statement = connection.prepareStatement(query);
-        for (int i = 0; i < ids.length; i++) {
-            statement.setInt(i + 1, ids[i]);
-        }
         statement.execute();
         query = "SELECT name, age FROM minions";
         statement = connection.prepareStatement(query);
