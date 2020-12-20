@@ -18,7 +18,10 @@ public class User {
     @Column(name = "age")
     private int age;
     @Column(name = "registration_date")
-    private LocalDate registrationDate;
+    private LocalDate registrationDate = LocalDate.now();
+
+    public User() {
+    }
 
     public User(String username, String password, int age, LocalDate registrationDate) {
         this.username = username;
