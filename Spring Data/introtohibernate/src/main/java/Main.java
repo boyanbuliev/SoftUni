@@ -6,5 +6,8 @@ public class Main {
     public static void main(String[] args) {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("soft_uni");
         EntityManager em = factory.createEntityManager();
+
+        Engine engine = new Engine(em);
+        engine.run();
     }
 }
