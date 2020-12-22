@@ -41,10 +41,64 @@ public class Engine implements Runnable {
 //            e.printStackTrace();
 //        }
 //        findLatest10Projects();
-        increaseSalaries();
+//        increaseSalaries();
+//        try {
+//            findEmployeesByFirstName();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        employeesMaximumSalaries();
+        try {
+            removeTowns();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void removeTowns() throws IOException {
+        String town = bf.readLine();
+        entityManager.getTransaction().begin();
+        entityManager.createQuery("SELECT e FROM Employee e WHERE e.address.town.name=:name", Employee.class)
+                .setParameter("name", town).getResultStream().forEach(e -> e.setAddress(null));
+        List<Address> addresses = entityManager.createQuery("SELECT a FROM Address a WHERE a.town.name=:name", Address.class)
+                .setParameter("name", town).getResultList();
+        int count = addresses.size();
+        addresses.forEach(a->a.setTown(null));
+        entityManager.getTransaction().commit();
+        entityManager.getTransaction().begin();
+        entityManager.createQuery("DELETE FROM Town t WHERE t.name=:name").setParameter("name",town).executeUpdate();
+        entityManager.getTransaction().commit();
+        if (count == 1) {
+            System.out.printf("%d address in %s deleted",count,town);
+        }else
+            System.out.printf("%d addresses in %s deleted",count,town);
+
+    }
+
+    private void employeesMaximumSalaries() {
+        entityManager.createQuery("SELECT e FROM Employee e WHERE e.salary = " +
+                "(SELECT max(em.salary) FROM Employee em WHERE e.department=em.department) " +
+                "GROUP BY e.department HAVING max(e.salary) NOT BETWEEN 30000 AND 70000", Employee.class).getResultStream()
+                .forEach(d -> System.out.printf("%s %.2f%n", d.getDepartment().getName(), d.getSalary()));
+    }
+
+    private void findEmployeesByFirstName() throws IOException {
+        String input = bf.readLine();
+        entityManager.createQuery("SELECT e FROM Employee e " +
+                "WHERE e.firstName LIKE concat(:name, '%')", Employee.class).setParameter("name", input)
+                .getResultStream().forEach(e -> System.out.printf("%s %s - %s - ($%.2f)%n",
+                e.getFirstName(), e.getLastName(), e.getJobTitle(), e.getSalary()));
     }
 
     private void increaseSalaries() {
+        entityManager.getTransaction().begin();
+        entityManager.createQuery("UPDATE Employee e SET e.salary = e.salary * 1.12 " +
+                "WHERE e.department.id IN(1, 2, 4, 11)").executeUpdate();
+        entityManager.createQuery("SELECT e FROM Employee e " +
+                "WHERE e.department.id IN(1, 2, 4, 11)", Employee.class)
+                .getResultStream().forEach(e -> System.out.printf("%s %s ($%.2f)%n", e.getFirstName(),
+                e.getLastName(), e.getSalary()));
+        entityManager.getTransaction().commit();
     }
 
     private void findLatest10Projects() {
