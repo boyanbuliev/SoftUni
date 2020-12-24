@@ -9,6 +9,7 @@ import java.util.Set;
 @Table(name = "courses")
 public class Course extends BaseEntity {
     private String name;
+    private Teacher teacher;
     private Set<Student> students;
 
     public Course() {
@@ -33,5 +34,15 @@ public class Course extends BaseEntity {
 
     public void setStudents(Set<Student> students) {
         this.students = students;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "teacher_id", referencedColumnName = "id")
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 }

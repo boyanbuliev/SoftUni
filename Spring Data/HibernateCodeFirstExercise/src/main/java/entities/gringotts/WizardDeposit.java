@@ -1,4 +1,4 @@
-package entities.wizard_deposits;
+package entities.gringotts;
 
 import entities.BaseEntity;
 
@@ -56,7 +56,7 @@ public class WizardDeposit extends BaseEntity {
         this.notes = notes;
     }
 
-    @Column(columnDefinition = "INT UNSIGNED")
+    @Column(columnDefinition = "INT UNSIGNED",nullable = false)
     public int getAge() {
         return age;
     }
