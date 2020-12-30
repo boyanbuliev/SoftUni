@@ -1,43 +1,25 @@
 package com.example.demo.domain.entities;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "labels")
-public class Label extends BaseEntity {
-
+@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+public class Label {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
+    private Long id;
     private String title;
     private String subtitle;
-    private Set<Shampoo> shampoos;
-
-    public Label() {
-    }
-
-    @Column(name = "title")
-    public String getTitle() {
-        return this.title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    @Column(name = "subtitle")
-    public String getSubtitle() {
-        return this.subtitle;
-    }
-
-    public void setSubtitle(String subtitle) {
-        this.subtitle = subtitle;
-    }
-
-    @OneToMany(mappedBy = "label", targetEntity = Shampoo.class)
-    public Set<Shampoo> getShampoos() {
-        return this.shampoos;
-    }
-
-    public void setShampoos(Set<Shampoo> shampoos) {
-        this.shampoos = shampoos;
-    }
+    @ToString.Exclude
+    @OneToMany(mappedBy = "label")
+    private Set<Shampoo> shampoos = new HashSet<>();
 }

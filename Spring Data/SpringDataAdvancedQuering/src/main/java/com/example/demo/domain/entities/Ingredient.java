@@ -1,46 +1,29 @@
 package com.example.demo.domain.entities;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "ingredients")
-public class Ingredient extends BaseEntity {
-
+@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@NamedQuery(name = "Ingredient.updateIngredientsByPrice",
+        query = "UPDATE Ingredient i SET i.price = i.price * 1.1")
+public class Ingredient {
+    public static final String updateIngredientsByPrice="Ingredient.updateIngredientsByPrice";
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
+    private Long id;
     private String name;
     private BigDecimal price;
-    private Set<Shampoo> shampoos;
-
-    public Ingredient() {
-    }
-
-    @Column(name = "name")
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Column(name = "price")
-    public BigDecimal getPrice() {
-        return this.price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    @ManyToMany(mappedBy = "ingredients",
-            fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL)
-    public Set<Shampoo> getShampoos() {
-        return this.shampoos;
-    }
-
-    public void setShampoos(Set<Shampoo> shampoos) {
-        this.shampoos = shampoos;
-    }
+    @ToString.Exclude
+    @ManyToMany(mappedBy = "ingredients")
+    private Set<Shampoo> shampoos = new HashSet<>();
 }

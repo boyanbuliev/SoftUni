@@ -12,6 +12,5 @@ public interface IngredientService {
 
     Ingredient findByName(String name);
 
-    @Query("DELETE FROM Ingredient i WHERE i.name = :name")
     int deleteIngredientsByName(String name);
 }
