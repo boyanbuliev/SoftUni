@@ -13,7 +13,7 @@ public class AppController implements CommandLineRunner {
     private final BookService bookService;
 
     public AppController(CategoryService categoryService, AuthorService authorService, BookService bookService) {
-        this.categoryService = categoryService;
+        this.categoryServi ce = categoryService;
         this.authorService = authorService;
         this.bookService = bookService;
     }
