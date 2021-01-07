@@ -16,7 +16,6 @@ public class Game extends BaseEntity {
     private BigDecimal price;
     private String description;
     private LocalDate releaseDate;
-//    private List<User> users;
 
     public Game() {
     }
@@ -77,13 +76,4 @@ public class Game extends BaseEntity {
     public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
-
-//    @ManyToMany(mappedBy = "games", targetEntity = User.class)
-//    public List<User> getUsers() {
-//        return users;
-//    }
-//
-//    public void setUsers(List<User> users) {
-//        this.users = users;
-//    }
 }

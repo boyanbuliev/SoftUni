@@ -2,14 +2,13 @@ package com.example.demo.dtos;
 
 import org.hibernate.validator.constraints.Length;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
 
 public class UserRegisterDto {
-    @Pattern(regexp = "\\w*@{1}\\w*\\.{1}\\w*",message = "Email incorrect")
+    @Pattern(regexp = "\\w*@{1}\\w*\\.{1}\\w*", message = "Email incorrect")
     private String email;
-@Length(min = 6, message = "Password length should be atleast 6 symbols")
-@Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{6,}$",message = "Password incorrect")
+    @Length(min = 6, message = "Password length should be atleast 6 symbols")
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{6,}$", message = "Password incorrect")
     private String password;
     private String confirmPassword;
     private String fullName;

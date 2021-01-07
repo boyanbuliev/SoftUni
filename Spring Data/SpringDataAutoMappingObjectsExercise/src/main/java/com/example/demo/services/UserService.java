@@ -1,11 +1,14 @@
 package com.example.demo.services;
 
+import com.example.demo.dtos.UserLoginDto;
 import com.example.demo.dtos.UserRegisterDto;
 
 public interface UserService {
     String registerUser(UserRegisterDto userRegisterDto);
 
-    void loginUser();
+    String loginUser(UserLoginDto user);
 
-    void logoutUser();
+    String logoutUser();
+
+    boolean isAdminLogged();
 }

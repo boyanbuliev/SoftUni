@@ -1,11 +1,13 @@
 package com.example.demo.services;
 
-import com.example.demo.entities.Game;
+import com.example.demo.dtos.AddGameDto;
+import com.example.demo.dtos.DeleteGameDto;
+import com.example.demo.dtos.EditGameDto;
 
 public interface GameService {
-    Game addGame(Game game);
+    String addGame(AddGameDto addGameDto);
 
-    Game editGame(Game game);
+    String editGame(EditGameDto editGameDto);
 
-    Game deleteGame(Game game);
+    String deleteGame(DeleteGameDto deleteGameDto);
 }
