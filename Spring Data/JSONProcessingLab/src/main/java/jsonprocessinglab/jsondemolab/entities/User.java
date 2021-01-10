@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Post {
+public class User {
     @Expose
     @EqualsAndHashCode.Include
     @Id
@@ -25,30 +25,38 @@ public class Post {
     @Expose
     @NonNull
     @NotNull
-    @Length(min = 3, max = 80, message = "Title must be between 3 and 80 symbols.")
-    private String title;
+    @Length(max = 20)
+    private String firstName;
 
     @Expose
     @NonNull
     @NotNull
-    @Length(min = 3, max = 2048)
-    private String content;
+    @Length(min = 2, max = 20)
+    private String lastName;
+
+    @Expose
+    @NonNull
+    @NotNull
+    @Length(min = 2, max = 50)
+    private String username;
+
+    @Expose(serialize = false)
+    @NonNull
+    @NotNull
+    @Length(min = 5, max = 30)
+    private String password;
+
+    @Expose
+    @NonNull
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @Expose
     @NonNull
     @NotNull
     @URL
     private String imageUrl;
-
-    @Expose
-    @ManyToOne
-    private User author;
-
-    @Expose(serialize = false)
-    @NonNull
-    @NotNull
-    @Transient
-    private Long authorId;
 
     @Expose
     private LocalDateTime created = LocalDateTime.now();
