@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import javax.validation.ConstraintViolation;
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -41,7 +43,14 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<Category> getCategories() {
-        return this.categoryRepository.findAll();
+    public Set<Category> getRandomCategories() {
+        Random random = new Random();
+        Set<Category> categories = new HashSet<>();
+        for (int i = 0; i < random.nextInt(3) + 1; i++) {
+            categories.add(categoryRepository
+                    .getOne((random.nextInt((int) categoryRepository.count()) + 1L)));
+        }
+        return categories;
     }
+
 }

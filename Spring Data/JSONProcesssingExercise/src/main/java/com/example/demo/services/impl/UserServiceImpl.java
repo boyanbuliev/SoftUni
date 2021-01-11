@@ -40,14 +40,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getRandomUser() {
-        return this.userRepository.getOne(1L);
-//        return this.userRepository.getOne((long) this.randomNumberGenerator((int)userRepository.count()));
+        return this.userRepository.getOne(ThreadLocalRandom.current().nextLong(userRepository.count()) + 1);
     }
-
-
-    private int randomNumberGenerator(int bound) {
-        return ThreadLocalRandom.current().nextInt(bound);
-    }
-
-
 }

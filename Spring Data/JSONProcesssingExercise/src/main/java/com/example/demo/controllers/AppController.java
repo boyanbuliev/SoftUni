@@ -6,6 +6,7 @@ import com.example.demo.models.dtos.UserSeedDto;
 import com.example.demo.services.CategoryService;
 import com.example.demo.services.ProductService;
 import com.example.demo.services.UserService;
+import com.example.demo.utils.FileIOUtil;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Component;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
+import java.math.BigDecimal;
 
 import static com.example.demo.constants.GlobalConstants.*;
 
@@ -22,13 +25,15 @@ public class AppController implements CommandLineRunner {
     private final CategoryService categoryService;
     private final UserService userService;
     private final ProductService productService;
+    private final FileIOUtil fileIOUtil;
 
     @Autowired
-    public AppController(Gson gson, CategoryService categoryService, UserService userService, ProductService productService) {
+    public AppController(Gson gson, CategoryService categoryService, UserService userService, ProductService productService, FileIOUtil fileIOUtil) {
         this.gson = gson;
         this.categoryService = categoryService;
         this.userService = userService;
         this.productService = productService;
+        this.fileIOUtil = fileIOUtil;
     }
 
     @Override
@@ -36,6 +41,26 @@ public class AppController implements CommandLineRunner {
         this.seedCategories();
         this.seedUsers();
         this.seedProducts();
+        this.query1(new BigDecimal(500), new BigDecimal(1000));
+    }
+
+//    private void queryAndExportData(int query) {
+//        switch (query) {
+//            case 1:
+//                this.query1(new BigDecimal(500), new BigDecimal(1000));
+//                break;
+//            case 2:
+//                break;
+//            case 3:
+//                break;
+//            case 4:
+//                break;
+//        }
+//    }
+
+    private void query1(BigDecimal lower, BigDecimal upper) throws IOException {
+        String s = gson.toJson(productService.productsInRange(lower, upper));
+        this.fileIOUtil.write(s, QUERY_1_OUTPUT);
     }
 
     private void seedProducts() throws FileNotFoundException {

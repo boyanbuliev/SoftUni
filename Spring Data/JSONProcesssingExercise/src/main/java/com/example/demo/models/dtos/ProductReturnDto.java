@@ -1,18 +1,19 @@
 package com.example.demo.models.dtos;
 
 import com.google.gson.annotations.Expose;
-import org.hibernate.validator.constraints.Length;
 
-import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
 
-public class ProductSeedDto {
+public class ProductReturnDto {
     @Expose
-    @Length(min = 3,message = "Product name is not valid")
     private String name;
     @Expose
-    @Positive
     private BigDecimal price;
+    @Expose
+    private String seller;
+
+    public ProductReturnDto() {
+    }
 
     public String getName() {
         return name;
@@ -28,5 +29,13 @@ public class ProductSeedDto {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public String getSeller() {
+        return seller;
+    }
+
+    public void setSeller(String seller) {
+        this.seller = seller;
     }
 }

@@ -8,6 +8,7 @@ public class UserSeedDto {
     @Length(min = 3)
     private String firstName;
     @Expose
+    @Length(min = 3,message = "Last name is not valid")
     private String lastName;
     @Expose
     private int age;
