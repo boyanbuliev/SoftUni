@@ -41,7 +41,13 @@ public class AppController implements CommandLineRunner {
         this.seedCategories();
         this.seedUsers();
         this.seedProducts();
-        this.query1(new BigDecimal(500), new BigDecimal(1000));
+//        this.query1(new BigDecimal(500), new BigDecimal(1000));
+        this.query2();
+    }
+
+    private void query2() throws IOException {
+        String s = gson.toJson(userService.successfullySoldProducts());
+        fileIOUtil.write(s,QUERY_2_OUTPUT);
     }
 
 //    private void queryAndExportData(int query) {

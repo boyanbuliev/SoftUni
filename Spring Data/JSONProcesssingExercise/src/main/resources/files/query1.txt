@@ -1,157 +1,167 @@
 [
   {
-    "name": "Parsley",
-    "price": 519.06,
-    "seller": "Carl Lawson"
+    "name": "Allopurinol",
+    "price": 518.50,
+    "seller": "Rachel Johnson"
   },
   {
-    "name": "equaline",
-    "price": 520.45,
-    "seller": "Anna Parker"
+    "name": "Parsley",
+    "price": 519.06,
+    "seller": "null Fox"
+  },
+  {
+    "name": "Extra Strength Pain Reliever PM",
+    "price": 542.72,
+    "seller": "null Moreno"
   },
   {
     "name": "TERSI",
     "price": 554.91,
-    "seller": "Nicole Martinez"
+    "seller": "Jeremy Woods"
   },
   {
     "name": "DAYWEAR PLUS MULTI PROTECTION TINTED MOISTURIZER",
     "price": 555.12,
-    "seller": "Christine Gomez"
+    "seller": "null Bennett"
   },
   {
-    "name": "Topiramate",
-    "price": 578.77,
-    "seller": "Patrick King"
+    "name": "PLANTAGO LANCEOLATA POLLEN",
+    "price": 561.68,
+    "seller": "null Thompson"
+  },
+  {
+    "name": "Echinacea Quartz Gum Support",
+    "price": 570.08,
+    "seller": "Diana Harvey"
   },
   {
     "name": "AIR",
     "price": 581.69,
-    "seller": "Jennifer Riley"
+    "seller": "Bonnie Fox"
   },
   {
     "name": "Pleo Ginkgo",
     "price": 613.65,
-    "seller": "Emily Parker"
+    "seller": "Rachel Johnson"
   },
   {
     "name": "No7 Protect and Perfect Foundation Sunscreen Broad Spectrum SPF 15 Cool Ivory",
     "price": 616.19,
-    "seller": "Christine Gomez"
+    "seller": "Gloria Alexander"
   },
   {
-    "name": "AMARANTHUS PALMERI POLLEN",
-    "price": 623.16,
-    "seller": "null Moreno"
+    "name": "Glipizide",
+    "price": 621.78,
+    "seller": "Joshua Murray"
   },
   {
     "name": "Foaming Hand Sanitizer",
     "price": 624.72,
-    "seller": "null Peterson"
+    "seller": "Chris Mitchell"
   },
   {
-    "name": "ziprasidone hydrochloride",
-    "price": 628.66,
-    "seller": "Paula Hill"
+    "name": "Imipramine Hydrochloride",
+    "price": 648.69,
+    "seller": "Arthur Reynolds"
   },
   {
-    "name": "AVANDAMET",
-    "price": 632.08,
-    "seller": "null Harrison"
+    "name": "Amitiza",
+    "price": 666.58,
+    "seller": "null Schmidt"
   },
   {
-    "name": "Strattera",
-    "price": 658.54,
-    "seller": "Jonathan Rodriguez"
+    "name": "ENBREL",
+    "price": 673.97,
+    "seller": "Jacqueline Perez"
   },
   {
     "name": "Ampicillin",
     "price": 674.63,
-    "seller": "Sarah Day"
+    "seller": "null Thompson"
   },
   {
-    "name": "CLARINS Ever Matte SPF 15 - 105 Nude",
-    "price": 696.06,
-    "seller": "Gary Stevens"
-  },
-  {
-    "name": "CALMING DIAPER RASH",
-    "price": 700.92,
-    "seller": "Paula Hill"
+    "name": "PRIMAXIN",
+    "price": 686.66,
+    "seller": "Kathy Gilbert"
   },
   {
     "name": "Acnezzol Base",
     "price": 710.60,
-    "seller": "Anna Clark"
+    "seller": "Amanda Frazier"
+  },
+  {
+    "name": "Prostate",
+    "price": 716.05,
+    "seller": "Clarence Fowler"
   },
   {
     "name": "Warfarin Sodium",
     "price": 770.05,
-    "seller": "Jennifer Riley"
+    "seller": "null Fox"
   },
   {
-    "name": "Naproxen",
-    "price": 807.22,
-    "seller": "null Cunningham"
-  },
-  {
-    "name": "Meloxicam",
-    "price": 809.18,
-    "seller": "null Harrison"
+    "name": "Isosorbide Mononitrate",
+    "price": 789.91,
+    "seller": "Anna Parker"
   },
   {
     "name": "LV-FX",
     "price": 820.87,
-    "seller": "null Harrison"
+    "seller": "Patricia Cooper"
   },
   {
     "name": "IOPE SUPER VITAL",
     "price": 824.68,
-    "seller": "Christina Patterson"
+    "seller": "Marie Williamson"
   },
   {
-    "name": "Moore Medical Sinus Pain and Pressure Relief",
-    "price": 855.39,
+    "name": "RESCRIPTOR",
+    "price": 850.52,
+    "seller": "Nicole Martinez"
+  },
+  {
+    "name": "EPZICOM",
+    "price": 895.65,
+    "seller": "Clarence Fowler"
+  },
+  {
+    "name": "Aspirin",
+    "price": 925.45,
+    "seller": "Diana Harvey"
+  },
+  {
+    "name": "Ranitidine",
+    "price": 926.64,
     "seller": "Christine Gomez"
   },
   {
-    "name": "Shopko Lip Treatment",
-    "price": 861.42,
-    "seller": "Doris Cook"
+    "name": "Care One Hemorrhoidal",
+    "price": 932.18,
+    "seller": "null Peterson"
   },
   {
-    "name": "Perrigo Benzoyl Peroxide",
-    "price": 873.24,
-    "seller": "Carl Daniels"
+    "name": "Spironolactone",
+    "price": 933.69,
+    "seller": "Jeremy Woods"
+  },
+  {
+    "name": "pain relief",
+    "price": 938.23,
+    "seller": "Sarah Day"
   },
   {
     "name": "Glipizide and Metformin Hydrochloride",
     "price": 953.60,
-    "seller": "null Peterson"
+    "seller": "Wanda Harris"
   },
   {
-    "name": "Metformin Hydrochloride",
-    "price": 953.99,
-    "seller": "null Schmidt"
+    "name": "Dawn Ultra Antibacterial Hand",
+    "price": 969.86,
+    "seller": "Brandon Fuller"
   },
   {
-    "name": "Homeopathic Rheumatism",
-    "price": 967.08,
-    "seller": "Marie Williamson"
-  },
-  {
-    "name": "NEO-POLY-BAC HYDRO",
-    "price": 967.32,
+    "name": "Megestrol Acetate",
+    "price": 976.15,
     "seller": "Carl Lawson"
-  },
-  {
-    "name": "Smooth texture Orange flavor",
-    "price": 976.65,
-    "seller": "Patrick King"
-  },
-  {
-    "name": "Retin-A MICRO",
-    "price": 995.98,
-    "seller": "Diana Harvey"
   }
 ]

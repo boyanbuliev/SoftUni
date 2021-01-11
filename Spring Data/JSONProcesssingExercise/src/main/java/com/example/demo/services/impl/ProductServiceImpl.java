@@ -4,6 +4,7 @@ import com.example.demo.entities.Product;
 import com.example.demo.entities.User;
 import com.example.demo.models.dtos.ProductReturnDto;
 import com.example.demo.models.dtos.ProductSeedDto;
+import com.example.demo.models.dtos.SoldProductDto;
 import com.example.demo.repositories.ProductRepository;
 import com.example.demo.services.CategoryService;
 import com.example.demo.services.ProductService;
@@ -18,6 +19,7 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -72,5 +74,11 @@ public class ProductServiceImpl implements ProductService {
                     return p1.getPrice().compareTo(p2.getPrice());
                 })
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Set<SoldProductDto> soldProductsBySeller(User seller) {
+        return productRepository.findAllBySellerAndBuyerIsNotNull(seller).stream()
+                .map(p -> modelMapper.map(p, SoldProductDto.class)).collect(Collectors.toSet());
     }
 }
