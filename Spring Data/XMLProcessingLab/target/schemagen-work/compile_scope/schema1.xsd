@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="person" type="person"/>
+
+  <xs:element name="persons" type="persons"/>
+
+  <xs:complexType name="address">
+    <xs:sequence>
+      <xs:element name="country" type="xs:string"/>
+      <xs:element name="city" type="xs:string"/>
+      <xs:element name="street" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:long" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="person">
+    <xs:sequence>
+      <xs:element name="firstName" type="xs:string" minOccurs="0"/>
+      <xs:element name="lastName" type="xs:string" minOccurs="0"/>
+      <xs:element name="address" type="address" minOccurs="0"/>
+      <xs:element name="phoneNumbers" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="phone" type="phoneNumber" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:long" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="phoneNumber">
+    <xs:sequence>
+      <xs:element name="number" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:long" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="persons">
+    <xs:sequence>
+      <xs:element ref="person" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+

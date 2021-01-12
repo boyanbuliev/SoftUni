@@ -61,10 +61,10 @@
                 </executions>
                 <configuration>
                     <sources>
-                        <source>src/main/java/models</source>
+                        <source>src/main/java/xmldemo/models</source>
                     </sources>
                     <outputDirectory>xsd</outputDirectory>
-                    <clearOutputDir>false</clearOutputDir>
+                    <clearOutputDir>true</clearOutputDir>
                     <transformSchemas>
                         <transformSchema>
                             <uri>/jaxb/gen</uri>

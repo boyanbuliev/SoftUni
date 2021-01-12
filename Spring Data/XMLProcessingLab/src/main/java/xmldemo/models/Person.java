@@ -15,13 +15,13 @@ import java.util.Set;
 public class Person {
     @XmlAttribute(required = true)
     private Long id;
-    @XmlElement
     @NonNull
     private String firstName;
-    @XmlElement
     @NonNull
     private String lastName;
     @NonNull
     private Address address;
-    private Set<PhoneNumber> phoneNumbers= new HashSet<>();
+    @XmlElementWrapper(name = "phoneNumbers")
+    @XmlElement(name = "phone")
+    private Set<PhoneNumber> phoneNumbers = new HashSet<>();
 }
