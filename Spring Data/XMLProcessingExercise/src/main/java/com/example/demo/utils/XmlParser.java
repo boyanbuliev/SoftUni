@@ -1,0 +1,11 @@
+package com.example.demo.utils;
+
+import javax.xml.bind.JAXBException;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+public interface XmlParser {
+    <T> T unmarshalFromFile(String filePath, Class<T> tClass) throws JAXBException, FileNotFoundException;
+
+    <T> void marshalToFile(String filePath, T rootDto) throws JAXBException, IOException;
+}

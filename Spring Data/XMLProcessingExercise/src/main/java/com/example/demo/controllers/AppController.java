@@ -1,31 +1,32 @@
 package com.example.demo.controllers;
 
+import com.example.demo.models.dtos.CustomerSeedRootDto;
 import com.example.demo.models.dtos.SupplierSeedRootDto;
 import com.example.demo.services.SupplierService;
+import com.example.demo.utils.XmlParser;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Unmarshaller;
-import java.io.File;
-
+import static com.example.demo.constants.GlobalConstants.CUSTOMERS_FILE_PATH;
 import static com.example.demo.constants.GlobalConstants.SUPPLIERS_FILE_PATH;
 
 @Component
 public class AppController implements CommandLineRunner {
+    private final XmlParser xmlParser;
     private final SupplierService supplierService;
 
-    public AppController(SupplierService supplierService) {
+    public AppController(XmlParser xmlParser, SupplierService supplierService) {
+        this.xmlParser = xmlParser;
         this.supplierService = supplierService;
     }
 
     @Override
     public void run(String... args) throws Exception {
-        JAXBContext ctx = JAXBContext.newInstance(SupplierSeedRootDto.class);
-        Unmarshaller unmarshaller = ctx.createUnmarshaller();
-        SupplierSeedRootDto unmarshal = (SupplierSeedRootDto) unmarshaller.
-                unmarshal(new File(SUPPLIERS_FILE_PATH));
-        this.seedSuppliers(unmarshal);
+        this.seedSuppliers(xmlParser.unmarshalFromFile(SUPPLIERS_FILE_PATH, SupplierSeedRootDto.class));
+        this.seedCustomers(xmlParser.unmarshalFromFile(CUSTOMERS_FILE_PATH, CustomerSeedRootDto.class));
+    }
+
+    private void seedCustomers(CustomerSeedRootDto customers) {
     }
 
     private void seedSuppliers(SupplierSeedRootDto suppliers) {
