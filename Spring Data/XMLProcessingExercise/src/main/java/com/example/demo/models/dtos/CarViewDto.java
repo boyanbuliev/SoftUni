@@ -1,27 +1,31 @@
 package com.example.demo.models.dtos;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "car")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class CarSeedDto {
-    @XmlElement
-    @NotNull
+public class CarViewDto {
+    @XmlAttribute
+    private Long id;
+    @XmlAttribute
     private String make;
-    @XmlElement
-    @NotNull
+    @XmlAttribute
     private String model;
-    @XmlElement(name = "travelled-distance")
-    @NotNull
-    @Min(0)
+    @XmlAttribute(name = "travelled-distance")
     private Long travelledDistance;
 
-    public CarSeedDto() {
+    public CarViewDto() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getMake() {

@@ -9,7 +9,7 @@ import javax.persistence.Table;
 public class Sale extends BaseEntity {
     private Customer buyer;
     private Car car;
-    private int discount;
+    private Double discount;
 
     public Sale() {
     }
@@ -32,11 +32,11 @@ public class Sale extends BaseEntity {
         this.car = car;
     }
 
-    public int getDiscount() {
+    public Double getDiscount() {
         return discount;
     }
 
-    public void setDiscount(int discount) {
+    public void setDiscount(Double discount) {
         this.discount = discount;
     }
 }

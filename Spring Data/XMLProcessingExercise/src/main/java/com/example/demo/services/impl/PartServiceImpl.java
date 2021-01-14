@@ -37,7 +37,7 @@ public class PartServiceImpl implements PartService {
     public void seedParts(List<PartSeedDto> parts) {
         parts.forEach(p -> {
             if (validationUtil.isValid(p)) {
-                if (partRepository.findByName(p.getName()) == null) {
+                if (partRepository.findByNameAndPrice(p.getName(),p.getPrice()) == null) {
                     Part part = modelMapper.map(p, Part.class);
                     part.setSupplier(supplierService.getRandomSupplier());
                     partRepository.save(part);

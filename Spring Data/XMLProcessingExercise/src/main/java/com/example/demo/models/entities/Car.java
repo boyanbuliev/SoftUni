@@ -53,4 +53,9 @@ public class Car extends BaseEntity {
         this.parts = parts;
     }
 
+    @Transient
+    public BigDecimal getPrice() {
+        return parts.stream()
+                .map(Part::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
 }

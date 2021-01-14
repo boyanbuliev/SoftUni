@@ -4,9 +4,9 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 
 public class XmlParserImpl implements XmlParser {
@@ -21,6 +21,7 @@ public class XmlParserImpl implements XmlParser {
     public <T> void marshalToFile(String filePath, T rootDto) throws JAXBException, IOException {
         JAXBContext context = JAXBContext.newInstance(rootDto.getClass());
         Marshaller marshaller = context.createMarshaller();
-        marshaller.marshal(rootDto, new FileWriter(filePath));
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        marshaller.marshal(rootDto, new File(filePath));
     }
 }

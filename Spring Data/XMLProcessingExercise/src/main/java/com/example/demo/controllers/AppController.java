@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import javax.xml.bind.JAXBException;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import static com.example.demo.constants.GlobalConstants.*;
 
@@ -35,13 +36,23 @@ public class AppController implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws JAXBException, FileNotFoundException {
-        this.seedSuppliers();
-        this.seedParts();
-        this.seedCars();
-        this.seedCustomers();
-        this.seedSales();
-        this.carService.getPrice();
+    public void run(String... args) throws JAXBException, IOException {
+//        this.seedSuppliers();
+//        this.seedParts();
+//        this.seedCars();
+//        this.seedCustomers();
+//        this.seedSales();
+//        this.orderedCustomers();
+        this.carsFromMakeToyota();
+    }
+
+    private void carsFromMakeToyota() throws JAXBException, IOException {
+        xmlParser.marshalToFile(EX_2_FILE_PATH, carService.getAllCarsFromMake("Toyota"));
+    }
+
+    private void orderedCustomers() throws JAXBException, IOException {
+        xmlParser.marshalToFile(EX_1_FILE_PATH, customerService.getAllOrderedCustomers());
+
     }
 
     private void seedSales() {

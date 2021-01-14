@@ -1,4 +1,4 @@
-package com.example.demo.utils;
+package com.example.demo.adapters;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.time.LocalDateTime;
