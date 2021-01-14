@@ -1,5 +1,6 @@
 package com.example.demo.models.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -20,6 +21,7 @@ public class Supplier extends BaseEntity {
         this.name = name;
     }
 
+    @Column(name = "is_importer")
     public boolean isImporter() {
         return isImporter;
     }

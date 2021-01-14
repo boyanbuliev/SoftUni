@@ -1,18 +1,20 @@
 package com.example.demo.models.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Set;
 
 @Entity
 @Table(name = "parts")
 public class Part extends BaseEntity {
+    @NotNull
     private String name;
+    @NotNull
     private BigDecimal price;
+    @NotNull
     private int quantity;
+    @NotNull
     private Supplier supplier;
     private Set<Car> cars;
 
@@ -52,7 +54,7 @@ public class Part extends BaseEntity {
         this.supplier = supplier;
     }
 
-    @ManyToMany(mappedBy = "parts")
+    @ManyToMany(mappedBy = "parts", fetch = FetchType.EAGER)
     public Set<Car> getCars() {
         return cars;
     }

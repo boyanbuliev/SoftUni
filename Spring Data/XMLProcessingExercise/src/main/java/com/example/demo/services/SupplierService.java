@@ -1,7 +1,12 @@
 package com.example.demo.services;
 
-import com.example.demo.models.dtos.SupplierSeedRootDto;
+import com.example.demo.models.dtos.SupplierSeedDto;
+import com.example.demo.models.entities.Supplier;
+
+import java.util.List;
 
 public interface SupplierService {
-    void seedSuppliers(SupplierSeedRootDto suppliers);
+    void seedSuppliers(List<SupplierSeedDto> suppliers);
+
+    Supplier getRandomSupplier();
 }

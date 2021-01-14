@@ -1,18 +1,27 @@
-package com.example.demo.models.entities;
+package com.example.demo.models.dtos;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import com.example.demo.utils.DateAdapter;
+
+import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "customers")
-public class Customer extends BaseEntity {
+@XmlRootElement(name = "customer")
+@XmlAccessorType(XmlAccessType.FIELD)
+public class CustomerSeedDto {
+    @XmlAttribute
+    @NotNull
     private String name;
+    @XmlElement(name = "birth-date")
+    @XmlJavaTypeAdapter(DateAdapter.class)
+    @NotNull
     private LocalDateTime birthDate;
+    @XmlElement(name = "is-young-driver")
+    @NotNull
     private boolean isYoungDriver;
 
-    public Customer() {
+    public CustomerSeedDto() {
     }
 
     public String getName() {
@@ -23,7 +32,6 @@ public class Customer extends BaseEntity {
         this.name = name;
     }
 
-    @Column(name = "birth_date")
     public LocalDateTime getBirthDate() {
         return birthDate;
     }
@@ -32,7 +40,6 @@ public class Customer extends BaseEntity {
         this.birthDate = birthDate;
     }
 
-    @Column(name = "is_young_driver")
     public boolean isYoungDriver() {
         return isYoungDriver;
     }

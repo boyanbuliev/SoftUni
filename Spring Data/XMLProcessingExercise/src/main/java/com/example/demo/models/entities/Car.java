@@ -1,6 +1,8 @@
 package com.example.demo.models.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.Positive;
+import java.math.BigDecimal;
 import java.util.Set;
 
 @Entity
@@ -8,7 +10,7 @@ import java.util.Set;
 public class Car extends BaseEntity {
     private String make;
     private String model;
-    private int travelledDistance;
+    private Long travelledDistance;
     private Set<Part> parts;
 
     public Car() {
@@ -30,17 +32,18 @@ public class Car extends BaseEntity {
         this.model = model;
     }
 
-    public int getTravelledDistance() {
+    @Positive
+    public Long getTravelledDistance() {
         return travelledDistance;
     }
 
-    public void setTravelledDistance(int travelledDistance) {
+    public void setTravelledDistance(Long travelledDistance) {
         this.travelledDistance = travelledDistance;
     }
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "parts_cars",
-            joinColumns =    @JoinColumn(name = "part_id", referencedColumnName = "id"),
+            joinColumns = @JoinColumn(name = "part_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "car_id", referencedColumnName = "id"))
     public Set<Part> getParts() {
         return parts;
@@ -49,4 +52,5 @@ public class Car extends BaseEntity {
     public void setParts(Set<Part> parts) {
         this.parts = parts;
     }
+
 }

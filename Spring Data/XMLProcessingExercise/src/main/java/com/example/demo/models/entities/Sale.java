@@ -1,7 +1,7 @@
 package com.example.demo.models.entities;
 
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,7 +14,7 @@ public class Sale extends BaseEntity {
     public Sale() {
     }
 
-    @OneToOne
+    @ManyToOne
     public Customer getBuyer() {
         return buyer;
     }
@@ -23,7 +23,7 @@ public class Sale extends BaseEntity {
         this.buyer = buyer;
     }
 
-    @OneToOne
+    @ManyToOne
     public Car getCar() {
         return car;
     }

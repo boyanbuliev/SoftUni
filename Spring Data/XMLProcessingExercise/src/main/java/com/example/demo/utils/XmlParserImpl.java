@@ -1,7 +1,5 @@
 package com.example.demo.utils;
 
-import org.springframework.stereotype.Component;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -11,7 +9,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-@Component
 public class XmlParserImpl implements XmlParser {
     @Override
     public <T> T unmarshalFromFile(String filePath, Class<T> tClass) throws JAXBException, FileNotFoundException {
