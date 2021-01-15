@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import softuni.exam.domain.entities.Team;
 
 @Repository
-public interface TeamRepository extends JpaRepository<Team, Integer> {
+public interface TeamRepository extends JpaRepository<Team, Long> {
     Team findByName(String name);
 
 }

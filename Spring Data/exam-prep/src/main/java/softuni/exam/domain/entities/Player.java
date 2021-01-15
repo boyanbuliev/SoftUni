@@ -1,37 +1,24 @@
 package softuni.exam.domain.entities;
 
-import org.hibernate.validator.constraints.Length;
-
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "players")
 public class Player extends BaseEntity {
-    @Column(name = "first_name")
-    @NotNull
+    @Column(name = "first_name", nullable = false)
     private String firstName;
-    @Column(name = "last_name")
-    @NotNull
-    @Length(min = 3, max = 15, message = "Last name must be between 3 and 15 characters")
+    @Column(name = "last_name", nullable = false)
     private String lastName;
-    @NotNull
-    @Min(value = 1, message = "Number must be between 1 and 99")
-    @Max(value = 99, message = "Number must be between 1 and 99")
+    @Column(nullable = false)
     private Integer number;
-    @NotNull
-    @Min(value = 0, message = "Salary cannot be negative")
+    @Column(nullable = false)
     private BigDecimal salary;
-    @NotNull
-    @Enumerated(value = EnumType.STRING)
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private Position position;
-    @NotNull
     @ManyToOne
     private Picture picture;
-    @NotNull
     @ManyToOne
     private Team team;
 

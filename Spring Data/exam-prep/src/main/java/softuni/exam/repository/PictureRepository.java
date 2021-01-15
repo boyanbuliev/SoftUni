@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import softuni.exam.domain.entities.Picture;
 
 @Repository
-public interface PictureRepository extends JpaRepository<Picture, Integer> {
-    Picture findAllByUrl(String url);
+public interface PictureRepository extends JpaRepository<Picture, Long> {
+    Picture findByUrl(String url);
 }

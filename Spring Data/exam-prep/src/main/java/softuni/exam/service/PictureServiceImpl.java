@@ -39,7 +39,7 @@ public class PictureServiceImpl implements PictureService {
         List<PictureSeedDto> pictures = xmlParser.unmarshalFromFile(PICTURES_FILE_PATH, PictureSeedRootDto.class).getPictures();
         pictures.forEach(p -> {
             if (validatorUtil.isValid(p)) {
-                if (pictureRepository.findAllByUrl(p.getUrl()) == null) {
+                if (pictureRepository.findByUrl(p.getUrl()) == null) {
                     pictureRepository.save(modelMapper.map(p, Picture.class));
                     sb.append(String.format("Successfully imported picture - %s%n", p.getUrl()));
                 } else {
@@ -60,13 +60,12 @@ public class PictureServiceImpl implements PictureService {
 
     @Override
     public String readPicturesXmlFile() throws IOException {
-        return String.join("\n", Files.readAllLines(Path.of("src/main/resources/files/xml/pictures.xml")));
-
+        return Files.readString(Path.of(PICTURES_FILE_PATH));
     }
 
     @Override
     public Picture getByUrl(String url) {
-        return this.pictureRepository.findAllByUrl(url);
+        return this.pictureRepository.findByUrl(url);
     }
 
 

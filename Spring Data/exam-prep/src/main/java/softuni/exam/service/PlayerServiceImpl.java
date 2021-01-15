@@ -78,7 +78,7 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public String readPlayersJsonFile() throws IOException {
-        return String.join("\n", Files.readAllLines(Path.of("src/main/resources/files/json/players.json")));
+        return Files.readString(Path.of(PLAYERS_FILE_PATH));
     }
 
     @Override

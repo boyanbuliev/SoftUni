@@ -13,6 +13,7 @@ import softuni.exam.util.XmlParser;
 import javax.transaction.Transactional;
 import javax.validation.ConstraintViolation;
 import javax.xml.bind.JAXBException;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -58,7 +59,6 @@ public class TeamServiceImpl implements TeamService {
             } else {
                 validatorUtil.violations(t).stream().map(ConstraintViolation::getMessage)
                         .forEach(v -> sb.append(String.format("%s%n", v)));
-
             }
         });
         return sb.toString();
@@ -71,7 +71,7 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     public String readTeamsXmlFile() throws IOException {
-      return String.join("\n", Files.readAllLines(Path.of("src/main/resources/files/xml/teams.xml")));
+      return Files.readString(Path.of(TEAMS_FILE_PATH));
     }
 
     @Override

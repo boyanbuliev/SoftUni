@@ -11,11 +11,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "team")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class TeamSeedDto {
-    @NotNull(message = "Invalid team")
-    @Length(min = 3, max = 20, message = "Invalid team")
+    @NotNull
+    @Length(min = 3, max = 20)
     @Expose
     private String name;
-    @NotNull(message = "Invalid team")
+    @NotNull
     @Expose
     private PictureSeedDto picture;
 

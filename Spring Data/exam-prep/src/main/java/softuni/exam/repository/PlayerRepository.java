@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 import java.util.Set;
 
 @Repository
-public interface PlayerRepository extends JpaRepository<Player, Integer> {
+public interface PlayerRepository extends JpaRepository<Player, Long> {
     Player findByFirstNameAndLastName(String firstName, String lastName);
 
     @Query("SELECT p FROM Player p WHERE p.team.name = :team ORDER BY p.id")

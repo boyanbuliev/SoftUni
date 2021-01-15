@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class PictureSeedDto {
     @XmlElement
-    @NotNull(message = "Invalid picture")
+    @NotNull
     @Expose
     private String url;
 

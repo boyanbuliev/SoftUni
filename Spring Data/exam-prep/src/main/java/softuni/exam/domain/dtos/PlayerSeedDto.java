@@ -12,26 +12,26 @@ import java.math.BigDecimal;
 
 public class PlayerSeedDto {
     @Expose
-    @NotNull(message = "Invalid player")
+    @NotNull
     private String firstName;
     @Expose
-    @NotNull(message = "Invalid player")
-    @Length(min = 3, max = 15, message = "Invalid player")
+    @NotNull
+    @Length(min = 3, max = 15)
     private String lastName;
     @Expose
-    @NotNull(message = "Invalid player")
-    @Min(value = 1, message = "Invalid player")
-    @Max(value = 99, message = "Invalid player")
+    @NotNull
+    @Min(value = 1)
+    @Max(value = 99)
     private Integer number;
     @Expose
-    @NotNull(message = "Invalid player")
-    @Min(value = 0, message = "invalid player")
+    @NotNull
+    @Min(value = 0)
     private BigDecimal salary;
     @Expose
-    @NotNull(message = "Invalid player")
+    @NotNull
     @Enumerated
     private Position position;
-    @NotNull(message = "Invalid player")
+    @NotNull
     @Expose
     private PictureSeedDto picture;
     @Expose
