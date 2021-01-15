@@ -9,7 +9,6 @@ import softuni.exam.repository.PictureRepository;
 import softuni.exam.util.ValidatorUtil;
 import softuni.exam.util.XmlParser;
 
-import javax.validation.ConstraintViolation;
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -41,14 +40,14 @@ public class PictureServiceImpl implements PictureService {
             if (validatorUtil.isValid(p)) {
                 if (pictureRepository.findByUrl(p.getUrl()) == null) {
                     pictureRepository.save(modelMapper.map(p, Picture.class));
-                    sb.append(String.format("Successfully imported picture - %s%n", p.getUrl()));
+                    sb.append(String.format("Successfully imported picture - %s", p.getUrl()));
                 } else {
-                    System.out.println("Invalid picture");
+                    sb.append("Invalid picture");
                 }
             } else {
-                validatorUtil.violations(p).stream().map(ConstraintViolation::getMessage)
-                        .forEach(v -> sb.append(String.format("%s%n", v)));
+                sb.append("Invalid picture");
             }
+            sb.append(System.lineSeparator());
         });
         return sb.toString();
     }

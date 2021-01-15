@@ -4,7 +4,7 @@ import com.google.gson.annotations.Expose;
 import org.hibernate.validator.constraints.Length;
 import softuni.exam.domain.entities.Position;
 
-import javax.persistence.Enumerated;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -15,7 +15,6 @@ public class PlayerSeedDto {
     @NotNull
     private String firstName;
     @Expose
-    @NotNull
     @Length(min = 3, max = 15)
     private String lastName;
     @Expose
@@ -25,16 +24,16 @@ public class PlayerSeedDto {
     private Integer number;
     @Expose
     @NotNull
-    @Min(value = 0)
+    @DecimalMin(value = "0")
     private BigDecimal salary;
     @Expose
     @NotNull
-    @Enumerated
     private Position position;
     @NotNull
     @Expose
     private PictureSeedDto picture;
     @Expose
+    @NotNull
     private TeamSeedDto team;
 
     public PlayerSeedDto() {

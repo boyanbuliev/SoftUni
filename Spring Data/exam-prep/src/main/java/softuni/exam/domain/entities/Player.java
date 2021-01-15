@@ -17,9 +17,9 @@ public class Player extends BaseEntity {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Position position;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Picture picture;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Team team;
 
     public Player() {

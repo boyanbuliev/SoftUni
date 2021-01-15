@@ -1,5 +1,6 @@
 package softuni.exam.domain.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -8,7 +9,7 @@ import javax.persistence.Table;
 @Table(name = "teams")
 public class Team extends BaseEntity {
     private String name;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Picture picture;
 
     public Team() {

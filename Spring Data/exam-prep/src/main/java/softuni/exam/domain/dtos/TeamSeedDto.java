@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "team")
@@ -14,9 +15,11 @@ public class TeamSeedDto {
     @NotNull
     @Length(min = 3, max = 20)
     @Expose
+    @XmlElement
     private String name;
     @NotNull
     @Expose
+    @XmlElement
     private PictureSeedDto picture;
 
     public TeamSeedDto() {

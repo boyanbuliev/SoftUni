@@ -11,15 +11,12 @@ import softuni.exam.util.ValidatorUtil;
 import softuni.exam.util.XmlParser;
 
 import javax.transaction.Transactional;
-import javax.validation.ConstraintViolation;
 import javax.xml.bind.JAXBException;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static softuni.exam.constants.GlobalConstants.TEAMS_FILE_PATH;
 
@@ -46,27 +43,23 @@ public class TeamServiceImpl implements TeamService {
         StringBuilder sb = new StringBuilder();
         List<TeamSeedDto> teams = xmlParser.unmarshalFromFile(TEAMS_FILE_PATH, TeamSeedRootDto.class).getTeams();
         teams.forEach(t -> {
-            if (validatorUtil.isValid(t)) {
-                if (teamRepository.findByName(t.getName()) == null && pictureService.getByUrl(t.getPicture().getUrl()) != null) {
-                    Team team = new Team();
-                    team.setName(t.getName());
-                    team.setPicture(pictureService.getByUrl(t.getPicture().getUrl()));
-                    teamRepository.save(team);
-                    sb.append(String.format("Successfully imported team - %s%n", t.getName()));
-                } else {
-                    sb.append("Invalid team").append(System.lineSeparator());
-                }
+            if (validatorUtil.isValid(t) && teamRepository.findByName(t.getName()) == null
+                    && pictureService.getByUrl(t.getPicture().getUrl()) != null) {
+                Team team = modelMapper.map(t, Team.class);
+                team.setPicture(pictureService.getByUrl(t.getPicture().getUrl()));
+                teamRepository.save(team);
+                sb.append(String.format("Successfully imported team - %s", t.getName()));
             } else {
-                validatorUtil.violations(t).stream().map(ConstraintViolation::getMessage)
-                        .forEach(v -> sb.append(String.format("%s%n", v)));
+                sb.append("Invalid team");
             }
+            sb.append(System.lineSeparator());
         });
         return sb.toString();
     }
 
     @Override
     public boolean areImported() {
-        return teamRepository.count()!=0;
+        return teamRepository.count() != 0;
     }
 
     @Override
