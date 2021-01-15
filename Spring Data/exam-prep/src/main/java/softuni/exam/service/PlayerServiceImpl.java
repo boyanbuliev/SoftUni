@@ -102,7 +102,7 @@ public class PlayerServiceImpl implements PlayerService {
                 .map(p -> modelMapper.map(p, PlayerFromTeamViewDto.class)).collect(Collectors.toList()));
         sb.append(String.format("Team: %s%n", team.getName()));
         team.getPlayers().forEach(p -> sb.append(String.format(
-                "\tPlayer name: %s %s - %s%n", p.getFirstName(), p.getFirstName(), p.getPosition())));
+                "\tPlayer name: %s %s - %s%n", p.getFirstName(), p.getLastName(), p.getPosition())));
         return sb.toString();
     }
 }

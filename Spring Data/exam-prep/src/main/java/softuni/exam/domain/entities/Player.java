@@ -26,7 +26,7 @@ public class Player extends BaseEntity {
     @Min(value = 0, message = "Salary cannot be negative")
     private BigDecimal salary;
     @NotNull
-    @Enumerated
+    @Enumerated(value = EnumType.STRING)
     private Position position;
     @NotNull
     @ManyToOne

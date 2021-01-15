@@ -1,21 +1,13 @@
 package softuni.exam.domain.dtos;
 
-import com.google.gson.annotations.Expose;
-
 import java.math.BigDecimal;
 
 public class PlayerViewDto {
-    @Expose
     private String firstName;
-    @Expose
     private String lastName;
-    @Expose
     private Integer number;
-    @Expose
     private BigDecimal salary;
-    @Expose
     private TeamViewDto team;
-
     public PlayerViewDto() {
     }
 

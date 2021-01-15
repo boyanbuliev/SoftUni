@@ -4,13 +4,9 @@ import com.google.gson.annotations.Expose;
 import softuni.exam.domain.entities.Position;
 
 public class PlayerFromTeamViewDto {
-    @Expose
     private String firstName;
-    @Expose
     private String lastName;
-    @Expose
     private Position position;
-    @Expose
     private Number number;
 
     public PlayerFromTeamViewDto() {
