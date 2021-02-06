@@ -119,7 +119,6 @@ function storageCatalogue(arr) {
             dictionary[letter] = [];
         }
         dictionary[letter].push({ name, price: Number(price) });
-        dictionary[letter].sort((a, b) => a.name.localeCompare(b.name))
     }
     let result = [];
     Object.entries(dictionary).sort((a, b) => a[0].localeCompare(b[0])).forEach(entry => {
@@ -138,3 +137,112 @@ console.log(storageCatalogue(['Appricot : 20.4',
     'Anti-Bug Spray : 15',
     'T-Shirt : 10']));
 
+function townsToJson(arr) {
+    let [columns, ...table] = arr.map(splitLine);
+    function isEmptyString(x) { return x != '' }
+    function convertIfNum(x) { return isNaN(x) ? x : +Number(x).toFixed(2) }
+    function splitLine(input) {
+        return input.split('|').filter(isEmptyString).map(x => x.trim()).map(convertIfNum);
+    }
+    return JSON.stringify(table.map(entry => {
+        return columns.reduce((acc, curr, index) => {
+            acc[curr] = entry[index];
+            return acc;
+        }, {});
+    }));
+    // let [town, latitude, longitude] = arr.shift().split('\|').filter(e => e != '').map(x => x.trim());
+    // let result = [];
+    // while (arr.length) {
+    //     let currentTown = arr.shift().split('\|').filter(e => e != '').map(x => x.trim());
+    //     let current = {
+    //         [town]: currentTown[0],
+    //         [latitude]: +Number(currentTown[1]).toFixed(2),
+    //         [longitude]: +Number(currentTown[2]).toFixed(2),
+    //     }
+    //     result.push(current);
+    // }
+    // return JSON.stringify(result);
+}
+console.log(townsToJson(['| Town | Latitude | Longitude |',
+    '| Sofia | 42.696552 | 23.32601 |',
+    '| Beijing | 39.913818 | 116.363625 |']
+));
+
+
+function rectangle(width, height, color) {
+    function capitalize(word) { return word[0].toUpperCase() + word.slice(1); };
+    function calcArea() { return this.width * this.height; };
+    return {
+        width, height, color: capitalize(color), calcArea,
+    }
+}
+let rect = rectangle(4, 5, 'red');
+console.log(rect.width);
+console.log(rect.height);
+console.log(rect.color);
+console.log(rect.calcArea());
+
+
+function createSortedList() {
+    let list = [];
+    function add(element) {
+        list.push(element);
+        this.size++;
+        list.sort((a, b) => a - b);
+    }
+    function remove(index) {
+        if (index >= 0 && index < list.length) {
+            list.splice(index, 1);
+            this.size--;
+        }
+    }
+    function get(index) {
+        if (index >= 0 && index < list.length) {
+            return list[index];
+        }
+    }
+    return { add, remove, get, size: 0 };
+}
+let list = createSortedList();
+list.add(5);
+list.add(6);
+list.add(7);
+console.log(list.get(1));
+list.remove(1);
+console.log(list.get(1));
+
+
+function heroes() {
+    const canCast = (state) => ({
+        cast: (spell) => {
+            console.log(`${state.name} cast ${spell}`);
+            state.mana--;
+        }
+    })
+    const canFight = (state) => ({
+        fight: () => {
+            console.log(`${state.name} slashes at the foe!`);
+            state.stamina--;
+        }
+    })
+    const mage = (name) => {
+        let state = { name, health: 100, mana: 100 };
+        return Object.assign(state, canCast(state));
+    }
+    const fighter = (name) => {
+        let state = { name, health: 100, stamina: 100 };
+        return Object.assign(state, canFight(state));
+    }
+    return { mage, fighter }
+}
+let create = heroes();
+const scorcher = create.mage("Scorcher");
+scorcher.cast("fireball")
+scorcher.cast("thunder")
+scorcher.cast("light")
+
+const scorcher2 = create.fighter("Scorcher 2");
+scorcher2.fight()
+
+console.log(scorcher2.stamina);
+console.log(scorcher.mana);
