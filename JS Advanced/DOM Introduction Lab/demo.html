@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+</head>
+
+<body>
+    <h1 id="title">Hello, DOM!</h1>
+    <ul>
+        <li>DOM Methods Example</li>
+        <li>DOM Properties Example</li>
+    </ul>
+    <button onclick="alert('Message')">Click me</button>
+    <input id="username-input" name="username" type="text" />
+    <input type="text" />
+    <button class="submit-btn">Submit Form</button>
+    <script>
+        function start() {
+            const liElements = document.getElementsByTagName('li');
+            [...liElements].forEach(e => console.log(e));
+        }
+    </script>
+</body>
+
+</html>
