@@ -4,5 +4,5 @@ public enum ModelCategoryEnum {
     CAR,
     BUS,
     TRUCK,
-    MOTORCYCLE
+    MOTORCYCLE;
 }

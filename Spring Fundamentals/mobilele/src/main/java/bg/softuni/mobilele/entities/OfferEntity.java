@@ -18,6 +18,17 @@ public class OfferEntity extends BaseEntity {
     private TransmissionEnum transmission;
     @ManyToOne
     private ModelEntity model;
+    @ManyToOne
+    private UserEntity user;
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public OfferEntity setUser(UserEntity user) {
+        this.user = user;
+        return this;
+    }
 
     public EngineEnum getEngine() {
         return engine;
@@ -85,6 +96,7 @@ public class OfferEntity extends BaseEntity {
                 ", price=" + price +
                 ", transmission=" + transmission +
                 ", model=" + model +
+                ", user=" + user +
                 '}';
     }
 }
