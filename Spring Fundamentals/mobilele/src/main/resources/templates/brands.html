@@ -84,13 +84,15 @@
                         <th>End Year</th>
                         <th>Picture</th>
                     </tr>
-                    <tr>
-                        <th>No</th>
-                        <th >Model Name</th>
-                        <th >Model Category</th>
-                        <th >Model Start Year</th>
-                        <th >Model End Year</th>
-                        <th><img alt="image" src="/"
+                    <tr
+                            th:each="model, iter: ${brand.models}"
+                            th:object="${model}">
+                        <th th:text="${iter.index} + 1">No</th>
+                        <th th:text="*{name}">Model Name</th>
+                        <th th:text="*{category}">Model Category</th>
+                        <th th:text="*{startYear}">Model Start Year</th>
+                        <th th:text="*{endYear}?:'-'">Model End Year</th>
+                        <th><img alt="image" th:src="*{imageUrl}"
                                  class="img-thumbnail rounded"></th>
                     </tr>
                 </table>

@@ -1,10 +1,11 @@
 package bg.softuni.mobilele.view;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BrandViewModel {
     private String name;
-    private List<ModelViewModel> models;
+    private List<ModelViewModel> models = new ArrayList<>();
 
     public String getName() {
         return name;
@@ -17,6 +18,11 @@ public class BrandViewModel {
 
     public List<ModelViewModel> getModels() {
         return models;
+    }
+
+    public BrandViewModel addModel(ModelViewModel modelViewModel) {
+        this.models.add(modelViewModel);
+        return this;
     }
 
     public BrandViewModel setModels(List<ModelViewModel> models) {
