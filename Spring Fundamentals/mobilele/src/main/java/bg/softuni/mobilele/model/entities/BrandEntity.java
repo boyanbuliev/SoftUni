@@ -1,4 +1,4 @@
-package bg.softuni.mobilele.entities;
+package bg.softuni.mobilele.model.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,8 +15,9 @@ public class BrandEntity extends BaseEntity {
 		return name;
 	}
 
-	public void setName(String name) {
+	public BrandEntity setName(String name) {
 		this.name = name;
+		return this;
 	}
 
 	@Override

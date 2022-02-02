@@ -1,4 +1,4 @@
-package bg.softuni.mobilele.entities;
+package bg.softuni.mobilele.model.entities;
 
 import javax.persistence.*;
 import java.time.Instant;
@@ -20,24 +20,27 @@ public class BaseEntity {
         return id;
     }
 
-    public void setId(Long id) {
+    public BaseEntity setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public Instant getCreated() {
         return created;
     }
 
-    public void setCreated(Instant created) {
+    public BaseEntity setCreated(Instant created) {
         this.created = created;
+        return this;
     }
 
     public Instant getUpdated() {
         return updated;
     }
 
-    public void setUpdated(Instant updated) {
+    public BaseEntity setUpdated(Instant updated) {
         this.updated = updated;
+        return this;
     }
 
     @Override

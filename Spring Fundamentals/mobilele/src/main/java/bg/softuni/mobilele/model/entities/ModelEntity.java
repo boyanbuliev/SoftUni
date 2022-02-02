@@ -1,6 +1,6 @@
-package bg.softuni.mobilele.entities;
+package bg.softuni.mobilele.model.entities;
 
-import bg.softuni.mobilele.entities.enums.ModelCategoryEnum;
+import bg.softuni.mobilele.model.entities.enums.ModelCategoryEnum;
 
 import javax.persistence.*;
 
@@ -15,9 +15,8 @@ public class ModelEntity extends BaseEntity {
 
     @Column(length = 512)
     private String imageUrl;
-
-    private int startYear;
-    private int endYear;
+    private Integer startYear;
+    private Integer endYear;
 
     @ManyToOne
     private BrandEntity brand;
@@ -28,6 +27,24 @@ public class ModelEntity extends BaseEntity {
 
     public ModelEntity setName(String name) {
         this.name = name;
+        return this;
+    }
+
+    public Integer getStartYear() {
+        return startYear;
+    }
+
+    public ModelEntity setStartYear(Integer startYear) {
+        this.startYear = startYear;
+        return this;
+    }
+
+    public Integer getEndYear() {
+        return endYear;
+    }
+
+    public ModelEntity setEndYear(Integer endYear) {
+        this.endYear = endYear;
         return this;
     }
 
@@ -49,23 +66,6 @@ public class ModelEntity extends BaseEntity {
         return this;
     }
 
-    public int getStartYear() {
-        return startYear;
-    }
-
-    public ModelEntity setStartYear(int startYear) {
-        this.startYear = startYear;
-        return this;
-    }
-
-    public int getEndYear() {
-        return endYear;
-    }
-
-    public ModelEntity setEndYear(int endYear) {
-        this.endYear = endYear;
-        return this;
-    }
 
     public BrandEntity getBrand() {
         return brand;
