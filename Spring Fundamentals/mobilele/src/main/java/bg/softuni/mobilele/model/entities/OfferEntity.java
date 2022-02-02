@@ -4,6 +4,7 @@ import bg.softuni.mobilele.model.entities.enums.EngineEnum;
 import bg.softuni.mobilele.model.entities.enums.TransmissionEnum;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "offers")
@@ -13,20 +14,40 @@ public class OfferEntity extends BaseEntity {
     private EngineEnum engine;
     private String imageUrl;
     private int mileage;
-    private int price;
+    private BigDecimal price;
+    private int year;
+    private String description;
     @Enumerated(EnumType.STRING)
     private TransmissionEnum transmission;
     @ManyToOne
     private ModelEntity model;
-    @ManyToOne
-    private UserEntity user;
+//    @ManyToOne
+//    private UserEntity user;
+//
+//    public UserEntity getUser() {
+//        return user;
+//    }
+//
+//    public OfferEntity setUser(UserEntity user) {
+//        this.user = user;
+//        return this;
+//    }
 
-    public UserEntity getUser() {
-        return user;
+    public int getYear() {
+        return year;
     }
 
-    public OfferEntity setUser(UserEntity user) {
-        this.user = user;
+    public OfferEntity setYear(int year) {
+        this.year = year;
+        return this;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public OfferEntity setDescription(String description) {
+        this.description = description;
         return this;
     }
 
@@ -57,11 +78,11 @@ public class OfferEntity extends BaseEntity {
         return this;
     }
 
-    public int getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public OfferEntity setPrice(int price) {
+    public OfferEntity setPrice(BigDecimal price) {
         this.price = price;
         return this;
     }
@@ -94,9 +115,11 @@ public class OfferEntity extends BaseEntity {
                 ", imageUrl='" + imageUrl + '\'' +
                 ", mileage=" + mileage +
                 ", price=" + price +
+                ", year=" + year +
+                ", description='" + description + '\'' +
                 ", transmission=" + transmission +
                 ", model=" + model +
-                ", user=" + user +
+//                ", user=" + user +
                 '}';
     }
 }

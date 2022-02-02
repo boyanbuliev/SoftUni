@@ -3,12 +3,17 @@ package bg.softuni.mobilele;
 import bg.softuni.mobilele.model.entities.BaseEntity;
 import bg.softuni.mobilele.model.entities.BrandEntity;
 import bg.softuni.mobilele.model.entities.ModelEntity;
+import bg.softuni.mobilele.model.entities.OfferEntity;
+import bg.softuni.mobilele.model.entities.enums.EngineEnum;
 import bg.softuni.mobilele.model.entities.enums.ModelCategoryEnum;
+import bg.softuni.mobilele.model.entities.enums.TransmissionEnum;
 import bg.softuni.mobilele.repository.BrandRepository;
 import bg.softuni.mobilele.repository.ModelRepository;
+import bg.softuni.mobilele.repository.OfferRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.List;
 
@@ -17,10 +22,12 @@ public class DBInit implements CommandLineRunner {
 
     private final ModelRepository modelRepository;
     private final BrandRepository brandRepository;
+    private final OfferRepository offerRepository;
 
-    public DBInit(ModelRepository modelRepository, BrandRepository brandRepository) {
+    public DBInit(ModelRepository modelRepository, BrandRepository brandRepository, OfferRepository offerRepository) {
         this.modelRepository = modelRepository;
         this.brandRepository = brandRepository;
+        this.offerRepository = offerRepository;
     }
 
     @Override
@@ -35,12 +42,27 @@ public class DBInit implements CommandLineRunner {
 
         brandRepository.saveAll(List.of(fordBrand, hondaBrand));
 
-        initFiesta(fordBrand);
+        ModelEntity fiestaModel = initFiesta(fordBrand);
         initEscort(fordBrand);
         initNC750s(hondaBrand);
+        createFiestaOffer(fiestaModel);
     }
 
-    private ModelEntity initNC750s(BrandEntity brandEntity){
+    private void createFiestaOffer(ModelEntity modelEntity) {
+        OfferEntity fiestaOffer = new OfferEntity();
+        fiestaOffer.setEngine(EngineEnum.GASOLINE)
+                .setImageUrl("https://www.motopfohe.bg/files/news/archive/2017/08/blob-server.jpg")
+                .setMileage(40000)
+                .setPrice(BigDecimal.valueOf(10000))
+                .setYear(2019)
+                .setDescription("Karana e ot nemska baba. Zimata v garaj.")
+                .setTransmission(TransmissionEnum.MANUAL)
+                .setModel(modelEntity);
+        setCurrentTimestamps(fiestaOffer);
+        offerRepository.save(fiestaOffer);
+    }
+
+    private ModelEntity initNC750s(BrandEntity brandEntity) {
         ModelEntity nc750s = new ModelEntity();
         nc750s.setName("NC750S").setCategory(ModelCategoryEnum.MOTORCYCLE)
                 .setBrand(brandEntity)
